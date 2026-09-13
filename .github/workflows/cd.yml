@@ -1,0 +1,26 @@
+name: CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v6
+
+      - name: Construir imagem Docker
+        run: docker build -t lista-tarefas:latest .
+
+      - name: Verificar imagem criada
+        run: docker image inspect lista-tarefas:latest
+
+      - name: Finalizar CD
+        run: echo "CD concluído: imagem pronta para implantação."

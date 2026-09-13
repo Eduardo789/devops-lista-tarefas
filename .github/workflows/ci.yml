@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v6
+
+      - name: Verificar arquivos da aplicação
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+
+      - name: Verificar conteúdo da página
+        run: grep -q "Lista de Tarefas" index.html
+
+      - name: Finalizar CI
+        run: echo "CI concluído com sucesso."
