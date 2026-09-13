@@ -23,4 +23,4 @@ jobs:
         run: docker image inspect lista-tarefas:latest
 
       - name: Finalizar CD
-        run: echo "CD concluído: imagem pronta para implantação."
+        run: echo "CD concluído - imagem pronta para implantação."
