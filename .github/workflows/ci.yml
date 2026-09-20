@@ -1,4 +1,4 @@
-name: CI
+nname: CI
 
 on:
   pull_request:
@@ -16,6 +16,18 @@ jobs:
       - name: Baixar código
         uses: actions/checkout@v6
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes unitários
+        run: npm test
+
       - name: Verificar arquivos da aplicação
         run: |
           test -f index.html
@@ -24,6 +36,13 @@ jobs:
 
       - name: Verificar conteúdo da página
         run: grep -q "Lista de Tarefas" index.html
+
+      - name: Enviar alerta para o Discord
+        if: always()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{\"content\":\"GitHub Actions - CI\\nStatus: ${{ job.status }}\\nRepositório: devops-lista-tarefas\\nPR: #${{ github.event.pull_request.number }}\"}" \
+            "${{ secrets.DISCORD_WEBHOOK }}"
 
       - name: Finalizar CI
         run: echo "CI concluído com sucesso."
