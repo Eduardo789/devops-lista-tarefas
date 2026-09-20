@@ -1,0 +1,24 @@
+{
+  "name": "projeto-devops-lista-tarefas",
+  "version": "1.0.0",
+  "description": "Projeto simples desenvolvido para demonstrar práticas de DevOps com Git, GitHub Actions e Docker.",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduardo789/devops-lista-tarefas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Eduardo789/devops-lista-tarefas/issues"
+  },
+  "homepage": "https://github.com/Eduardo789/devops-lista-tarefas#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
